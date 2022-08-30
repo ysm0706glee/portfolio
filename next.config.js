@@ -5,7 +5,12 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ["media.graphassets.com"],
+    domains: [
+      "i.ibb.co",
+      "media.graphassets.com",
+      "apps.apple.com",
+      "mymizu-neptune.herokuapp.com",
+    ],
   },
 };
 
