@@ -51,6 +51,8 @@ type Props = {
 
 export const Work: NextPage<Props> = (props) => {
   const [[page, direction], setPage] = useState([0, 0]);
+  console.log("page: ", page);
+
   const index = wrap(0, props.works.length, page);
 
   const paginate = (newDirection: number) => {

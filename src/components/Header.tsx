@@ -2,6 +2,7 @@ import Link from "next/link";
 import { NextPage } from "next";
 import styled from "styled-components";
 import HomeIcon from "@mui/icons-material/Home";
+import { StyledA } from "src/styles/common";
 
 const StledHeader = styled.header`
   position: sticky;
@@ -13,28 +14,11 @@ const StledHeader = styled.header`
   }
 `;
 
-const StyledA = styled.a`
-  color: #ffffff;
-  position: relative;
-  text-decoration: none;
+const StledLi = styled.li`
+  margin: 1rem;
 
-  &: before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 4px;
-    border-radius: 4px;
-    background-color: #ffffff;
-    bottom: 0;
-    left: 0;
-    transform-origin: right;
-    transform: scaleX(0);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  &: hover: before {
-    transform-origin: left;
-    transform: scaleX(1);
+  @media only screen and (max-width: 480px) {
+    margin: 0.5rem;
   }
 `;
 
@@ -61,11 +45,11 @@ export const Header: NextPage = () => {
           </li>
           <div style={{ display: "flex" }}>
             {Labels.map((label) => (
-              <li key={label} style={{ margin: "1rem" }}>
+              <StledLi key={label}>
                 <Link href={`#${label.toLowerCase()}`}>
                   <StyledA>{label}</StyledA>
                 </Link>
-              </li>
+              </StledLi>
             ))}
           </div>
         </ul>

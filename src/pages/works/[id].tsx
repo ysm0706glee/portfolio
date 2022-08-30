@@ -2,8 +2,23 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { request, gql } from "graphql-request";
 import ReactMarkdown from "react-markdown";
 import { motion } from "framer-motion";
+import styled from "styled-components";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { gqlUrl } from "src/utills/const";
+import { StyledA } from "src/styles/common";
+
+const StyledSpan = styled.span`
+  content: "";
+  border-radius: 3px;
+  top: 0;
+  width: 85%;
+  margin: 0 auto;
+  margin-bottom: 1vw;
+  height: 0.5vw;
+  border: 1px solid #e2333b;
+  box-shadow: 0 0 10px #a32128, 0 0 20px #3f0716;
+  display: block;
+`;
 
 const sentence = {
   hidden: { opacity: 1 },
@@ -74,13 +89,10 @@ const Works: NextPage<Props> = (props) => {
         justifyContent: "space-between",
       }}
     >
-      <h2>
-        <span
-          style={{ paddingBottom: "0.5rem", borderBottom: "1px solid #ed2b12" }}
-        >
-          {props.works[0].title}
-        </span>
-      </h2>
+      <div>
+        <h2>{props.works[0].title}</h2>
+        <StyledSpan />
+      </div>
 
       <div style={{ flex: 1 }}>
         <ReactMarkdown
@@ -95,9 +107,13 @@ const Works: NextPage<Props> = (props) => {
       <div style={{ flex: 1, display: "flex" }}>
         {props.works[0].deployUrl && (
           <div style={{ marginRight: "1rem" }}>
-            <a href={props.works[0].deployUrl} target="_blank" rel="noreferrer">
+            <StyledA
+              href={props.works[0].deployUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
               Deploy
-            </a>
+            </StyledA>
           </div>
         )}
 

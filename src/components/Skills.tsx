@@ -53,7 +53,6 @@ export const Skills: NextPage<Props> = (props) => {
         <Card>
           <CardContent>
             <Image
-              className="skils"
               layout="fixed"
               objectFit="cover"
               src={backEnd.url}

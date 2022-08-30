@@ -5,12 +5,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: [
-      "i.ibb.co",
-      "media.graphassets.com",
-      "apps.apple.com",
-      "mymizu-neptune.herokuapp.com",
-    ],
+    domains: ["i.ibb.co", "upload.wikimedia.org", "www.vectorlogo.zone"],
   },
 };
 
