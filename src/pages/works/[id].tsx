@@ -7,19 +7,6 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import { gqlUrl } from "src/utills/const";
 import { StyledA } from "src/styles/common";
 
-const StyledSpan = styled.span`
-  content: "";
-  border-radius: 3px;
-  top: 0;
-  width: 85%;
-  margin: 0 auto;
-  margin-bottom: 1vw;
-  height: 0.5vw;
-  border: 1px solid #e2333b;
-  box-shadow: 0 0 10px #a32128, 0 0 20px #3f0716;
-  display: block;
-`;
-
 const sentence = {
   hidden: { opacity: 1 },
   visible: {
@@ -89,10 +76,7 @@ const Works: NextPage<Props> = (props) => {
         justifyContent: "space-between",
       }}
     >
-      <div>
-        <h2>{props.works[0].title}</h2>
-        <StyledSpan />
-      </div>
+      <h2>{props.works[0].title}</h2>
 
       <div style={{ flex: 1 }}>
         <ReactMarkdown
