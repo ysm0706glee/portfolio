@@ -10,6 +10,8 @@ const nextConfig = {
       "media.graphassets.com",
       "apps.apple.com",
       "mymizu-neptune.herokuapp.com",
+      "upload.wikimedia.org",
+      "www.vectorlogo.zone",
     ],
   },
 };
