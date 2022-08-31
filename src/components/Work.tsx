@@ -11,10 +11,13 @@ import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
 const Slides = styled.div`
-  width: 100%;
+  width: 100vw;
   padding: 1rem;
   display: flex;
   align-items: center;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1;
 `;
 
 const variants = {
@@ -56,7 +59,7 @@ export const Work: NextPage<Props> = (props) => {
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
   };
-
+  
   return (
     <section id="work">
       <h2
@@ -68,7 +71,8 @@ export const Work: NextPage<Props> = (props) => {
       </h2>
 
       <Slides>
-        <div>
+        
+        <div style={{ position: "absolute", top: "0px", zIndex: 10 }}>
           <ArrowCircleLeftIcon onClick={() => paginate(-1)}>
             Left
           </ArrowCircleLeftIcon>
@@ -85,6 +89,7 @@ export const Work: NextPage<Props> = (props) => {
               initial="enter"
               animate="center"
               exit="exit"
+              style={{ position: 'absolute', maxWidth: '100%' }}
               transition={{
                 x: { type: "spring", stiffness: 300, damping: 30 },
                 opacity: { duration: 0.2 },
@@ -107,7 +112,7 @@ export const Work: NextPage<Props> = (props) => {
           </Link>
         </AnimatePresence>
 
-        <div>
+        <div style={{ position: "absolute", top: "0px", left: "90%", zIndex: 20 }}>
           <ArrowCircleRightIcon onClick={() => paginate(1)}>
             Right
           </ArrowCircleRightIcon>
