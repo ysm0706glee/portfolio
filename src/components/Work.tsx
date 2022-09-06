@@ -1,20 +1,29 @@
 import { NextPage } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
 import styled from "styled-components";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import IconButton from "@mui/material/IconButton";
 import { CardActionArea } from "@mui/material";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import { ImageContainer } from "src/styles/common";
 
-const Slides = styled.div`
+const StyledDiv = styled.div`
   width: 100%;
-  padding: 1rem;
+  height: 30rem;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1;
   display: flex;
-  align-items: center;
+
+  @media only screen and (max-width: 480px) {
+    height: 15rem;
+  }
 `;
 
 const variants = {
@@ -43,8 +52,10 @@ type Props = {
     {
       id: string;
       title: string;
-      deployUrl: string;
-      githubUrl: string;
+      image: {
+        id: string;
+        url: string;
+      };
     }
   ];
 };
@@ -60,25 +71,18 @@ export const Work: NextPage<Props> = (props) => {
 
   return (
     <section id="work">
-      <h2
-        style={{
-          marginBottom: "3rem",
-        }}
-      >
-        Work 👨‍💻
-      </h2>
+      <h2 className="margin-buttom-3">Work 👨🏻‍💻</h2>
 
-      <Slides>
-        <div>
-          <ArrowCircleLeftIcon onClick={() => paginate(-1)}>
-            Left
-          </ArrowCircleLeftIcon>
-        </div>
-
+      <StyledDiv>
         <AnimatePresence initial={false} custom={direction}>
           <Link href={`/works/${props.works[index].id}`}>
             <Card
-              sx={{ width: "100%", height: "30rem" }}
+              sx={{
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                border: "3px solid #333",
+              }}
               component={motion.div}
               key={page}
               custom={direction}
@@ -94,26 +98,51 @@ export const Work: NextPage<Props> = (props) => {
               <CardActionArea>
                 <CardContent
                   sx={{
-                    width: "100%",
-                    height: "30rem",
                     display: "flex",
-                    justifyContent: "center",
+                    justifyContent: "space-around",
                     alignItems: "center",
                   }}
                 >
                   <h3>{props.works[index].title}</h3>
+                  <ImageContainer className="border">
+                    {props.works[index].image?.url ? (
+                      <Image
+                        src={props.works[index].image.url}
+                        layout="fill"
+                        objectFit="contain"
+                        alt="image"
+                      />
+                    ) : null}
+                  </ImageContainer>
                 </CardContent>
               </CardActionArea>
             </Card>
           </Link>
         </AnimatePresence>
 
-        <div>
-          <ArrowCircleRightIcon onClick={() => paginate(1)}>
-            Right
-          </ArrowCircleRightIcon>
-        </div>
-      </Slides>
+        <IconButton
+          sx={{
+            position: "absolute",
+            top: "calc(50% - 20px)",
+            zIndex: 2,
+          }}
+          onClick={() => paginate(-1)}
+        >
+          <ArrowCircleLeftIcon />
+        </IconButton>
+
+        <IconButton
+          sx={{
+            position: "absolute",
+            top: "calc(50% - 1rem)",
+            left: "calc(100% - 2.3rem)",
+            zIndex: 2,
+          }}
+          onClick={() => paginate(1)}
+        >
+          <ArrowCircleRightIcon />
+        </IconButton>
+      </StyledDiv>
     </section>
   );
 };

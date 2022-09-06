@@ -1,12 +1,16 @@
 import { NextPage } from "next";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
+import { StyledFlex, StyledBorder, ImageContainer } from "src/styles/common";
 
 type Props = {
   abouts: [
     {
       about: { markdown: string };
-      url: string;
+      profile: {
+        id: string;
+        url: string;
+      };
     }
   ];
 };
@@ -14,29 +18,21 @@ type Props = {
 export const About: NextPage<Props> = (props) => {
   return (
     <section id="about">
-      <h2 style={{ marginBottom: "3rem" }}>About</h2>
+      <h2 className="margin-buttom-3">About 😎</h2>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-        }}
-      >
-        <Image
-          priority
-          className="selfie"
-          layout="fixed"
-          objectFit="cover"
-          src={props.abouts[0].url}
-          height={300}
-          width={300}
-          alt="Selfie"
-        />
+      <StyledFlex>
+        <ImageContainer className="border">
+          <Image
+            src={props.abouts[0].profile.url}
+            layout="fill"
+            objectFit="contain"
+            alt="profile"
+          />
+        </ImageContainer>
         <div>
           <ReactMarkdown>{props.abouts[0].about.markdown}</ReactMarkdown>
         </div>
-      </div>
+      </StyledFlex>
     </section>
   );
 };

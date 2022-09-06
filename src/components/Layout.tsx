@@ -1,29 +1,22 @@
 import { ReactNode } from "react";
 import { createGlobalStyle } from "styled-components";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
 import { NextPage } from "next";
 
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
-
-type Props = {
-  children: ReactNode;
-};
-
 const GlobalStyle = createGlobalStyle`
-  body {
-    font-family: roboto;
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
+  }
+
+  h1, h2, h3 {
+    font-family: Poppins;
   }
 
   p {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    line-height: 1.5;
   }
 
   ul {
@@ -37,32 +30,98 @@ const GlobalStyle = createGlobalStyle`
   }
 
   section {
-    min-height: 100vh;
-    padding: 0 7rem;
-  }
-  
-  .selfie {
-    border-radius: 50%;
-  }
-  
-  .work {
-    border-radius: 1rem;
+    padding: 3rem 7rem;
   }
 
+  .primary-color {
+    color: #333;
+  }
+
+  .secondary-color {
+    color: #ffffff;
+  }
+
+  .tertiary-color {
+    color: #11bbb3;
+  }
+
+  .primary-background-color {
+    background: #333;
+  }
+
+  .secondary-background-color {
+    background: #ffffff;
+  }
+
+  .viewport-height-100 {
+    height: 100vh;
+  }
+
+  .block {
+    display: block;
+  }
+
+  .flex {
+    display: flex;
+  }
+
+  .flex-1 {
+    flex: 1;
+  }
+
+  .margin-buttom-3 {
+    margin-bottom: 3rem;
+  }
+
+  .margin-right-1 {
+    margin-right: 1rem;
+  }
+
+  .image-container {
+    position: relative;
+    width: 30rem;
+    height: 30rem;
+  }
+
+  .border {
+    border: 3px solid #333;
+    border-radius: 7px;
+  }
+
+  .margin-center {
+    margin: 0 auto;
+  }
   
   @media only screen and (max-width: 480px) {
+    p {
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
     section {
-      padding: 0 1rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .margin-buttom-2 {
+      margin-bottom: 2rem;
+    }
+
+    .image-container {
+      width: 20rem;
+      height: 20rem;
     }
   }
 `;
 
+type Props = {
+  children: ReactNode;
+};
+
 export const Layout: NextPage<Props> = ({ children }) => {
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
+    <div>
       <GlobalStyle />
       {children}
-    </ThemeProvider>
+    </div>
   );
 };

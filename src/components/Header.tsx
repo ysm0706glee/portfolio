@@ -1,17 +1,29 @@
 import Link from "next/link";
 import { NextPage } from "next";
 import styled from "styled-components";
-import HomeIcon from "@mui/icons-material/Home";
-import { StyledA } from "src/styles/common";
+import { AnimatedA } from "src/styles/common";
 
 const StledHeader = styled.header`
-  position: sticky;
-  top: 0;
+  height: 10vh;
   padding: 0 7rem;
+  background: #333;
 
   @media only screen and (max-width: 480px) {
     padding: 0 1rem;
   }
+`;
+
+const StledUl = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+  height: 100%;
+`;
+
+const StyledDiv = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const StledLi = styled.li`
@@ -22,37 +34,24 @@ const StledLi = styled.li`
   }
 `;
 
-const Labels = ["ABOUT", "SKILLS", "WORK", "CONTACT"];
+const Labels = ["ABOUT", "SKILLS", "WORK"];
 
 export const Header: NextPage = () => {
   return (
     <>
       <StledHeader>
-        <ul
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            margin: "0",
-          }}
-        >
-          <li>
-            <Link href="/">
-              <a>
-                <HomeIcon sx={{ cursor: "pointer" }} />
-              </a>
-            </Link>
-          </li>
-          <div style={{ display: "flex" }}>
+        <StledUl>
+          <div></div>
+          <StyledDiv>
             {Labels.map((label) => (
               <StledLi key={label}>
                 <Link href={`#${label.toLowerCase()}`}>
-                  <StyledA>{label}</StyledA>
+                  <AnimatedA white>{label}</AnimatedA>
                 </Link>
               </StledLi>
             ))}
-          </div>
-        </ul>
+          </StyledDiv>
+        </StledUl>
       </StledHeader>
     </>
   );

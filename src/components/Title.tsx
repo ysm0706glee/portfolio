@@ -1,90 +1,113 @@
 import { NextPage } from "next";
+import Image from "next/image";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
+import { StyledFlex } from "src/styles/common";
 
-const StyledDiv = styled.div`
-  &:before {
-    content: "";
-    border-radius: 3px;
-    top: 0;
-    width: 85%;
-    margin: 0 auto;
-    margin-bottom: 2vw;
-    height: 0.5vw;
-    border: 1px solid #e2333b;
-    box-shadow: 0 0 10px #a32128, 0 0 20px #3f0716;
-    display: block;
-  }
+const StyledSection = styled.section`
+  min-height: calc(100vh - 10vh);
 `;
 
-const StyledH3 = styled.h3`
-  color: #000000;
-  font-family: "indira_kregular";
-  font-size: 8rem;
-  text-transform: uppercase;
-  font-weight: normal;
-  text-align: center;
-  letter-spacing: -5px;
-  text-shadow: -1px -1px 0 #e2333b, 1px -1px 0 #e2333b, -1px 1px 0 #e2333b,
-    1px 1px 0 #e2333b, 0 0 2px #f9c2af, 0 0 14px#a32128, 0 0 10px#a32128,
-    0 0 13px #a32128, 0 0 20px #3f0716;
-  position: relative;
-  line-height: 0.9;
-  transform: scale(0.9, 1);
-  margin: 0 auto;
-
-  &:after {
-    content: "";
-    position: absolute;
-    border-radius: 3px;
-    top: 65%;
-    width: 12vw;
-    height: 0.5vw;
-    transform: translate(0vw, 0);
-    border: 1px solid #e2333b;
-    box-shadow: 0 0 10px #a32128, 0 0 20px #3f0716;
-  }
-
-  &:before {
-    content: "";
-    position: absolute;
-    border-radius: 3px;
-    top: 66%;
-    width: 12vw;
-    height: 0.5vw;
-    transform: translate(-9.5vw, 0);
-    border: 1px solid #e2333b;
-    box-shadow: 0 0 10px #a32128, 0 0 20px #3f0716;
-  }
-
-  > span:first-child {
-    transform: scale(1.4) translate(-1.5vw, 1vw);
-    display: inline-block;
-  }
-
-  > span:last-child {
-    transform: scale(1.4) translate(2.5vw, 1vw);
-    display: inline-block;
-  }
+const StyledP = styled.p`
+  font-size: 3rem;
 
   @media only screen and (max-width: 480px) {
-    font-size: 3rem;
+    margin: 1rem 0 1rem 0;
+    font-size: 1.5rem;
   }
 `;
 
-export const Title: NextPage = () => {
+type Props = {
+  titles: [
+    {
+      japan: {
+        id: string;
+        url: string;
+      };
+      spain: {
+        id: string;
+        url: string;
+      };
+    }
+  ];
+};
+
+export const Title: NextPage<Props> = (props) => {
+  const [language, setLanguage] = useState<"en" | "ja">("en");
+
   return (
-    <section
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <StyledDiv>
-        <StyledH3>
-          <span>F</span>RONT-EN<span>D</span>ENGINEER
-        </StyledH3>
-      </StyledDiv>
-    </section>
+    <StyledSection className="primary-background-color">
+      <StyledFlex>
+        <StyledP className="secondary-color">
+          Hello, my name is Takuma,
+          <br /> I am a {""}
+          <AnimatePresence initial={false} exitBeforeEnter>
+            {language === "en" ? (
+              <motion.span
+                className="tertiary-color"
+                key="en"
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1.2 }}
+                transition={{ duration: 0.5 }}
+                onMouseEnter={() => setLanguage("ja")}
+                onMouseLeave={() => setLanguage("en")}
+              >
+                Front-end engineer
+              </motion.span>
+            ) : (
+              <motion.span
+                className="tertiary-color"
+                key="ja"
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                onMouseEnter={() => setLanguage("ja")}
+                onMouseLeave={() => setLanguage("en")}
+              >
+                フロントエンドエンジニア
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </StyledP>
+
+        <AnimatePresence initial={false} exitBeforeEnter>
+          {language === "en" ? (
+            <motion.div
+              className="image-container margin-center"
+              key="en"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Image
+                priority
+                className="image"
+                src={props.titles[0].spain.url}
+                layout="fill"
+                objectFit="cover"
+                alt="spain"
+              />
+            </motion.div>
+          ) : (
+            <motion.div
+              className="image-container margin-center"
+              key="ja"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Image
+                priority
+                src={props.titles[0].japan.url}
+                layout="fill"
+                objectFit="cover"
+                alt="spain"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </StyledFlex>
+    </StyledSection>
   );
 };

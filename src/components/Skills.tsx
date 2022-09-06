@@ -3,14 +3,24 @@ import Image from "next/image";
 import styled from "styled-components";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+import { ImageContainer } from "src/styles/common";
 
-const StyledDiv = styled.div`
+const StyledH3 = styled.h3`
+  @media only screen and (max-width: 480px) {
+    text-align: center;
+  }
+`;
+
+const StyledUl = styled.ul`
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  & > li {
+    margin: 1rem 1rem 1rem 0;
+  }
 
   @media only screen and (max-width: 480px) {
-    flex-direction: column;
+    justify-content: center;
   }
 `;
 
@@ -29,18 +39,19 @@ export const Skills: NextPage<Props> = (props) => {
   const frontEnd = props.skills
     .filter((skill) => skill.type === "front-end")
     .map((frontEnd) => (
-      <li key={frontEnd.id} style={{ margin: "1rem" }}>
-        <Card>
+      <li key={frontEnd.id}>
+        <Card sx={{ border: "2px solid #333" }}>
           <CardContent>
-            <Image
-              src={frontEnd.url}
-              alt={frontEnd.name}
-              width={100}
-              height={100}
-            />
-            <Typography variant="body2">
-              <span style={{ display: "block" }}>{frontEnd.name}</span>
-            </Typography>
+            <ImageContainer smaill>
+              <Image
+                src={frontEnd.url}
+                layout="fill"
+                objectFit="contain"
+                alt={frontEnd.name}
+              />
+            </ImageContainer>
+
+            <span className="block">{frontEnd.name}</span>
           </CardContent>
         </Card>
       </li>
@@ -49,20 +60,19 @@ export const Skills: NextPage<Props> = (props) => {
   const backEnd = props.skills
     .filter((skill) => skill.type === "back-end")
     .map((backEnd) => (
-      <li key={backEnd.id} style={{ margin: "1rem" }}>
-        <Card>
+      <li key={backEnd.id}>
+        <Card sx={{ border: "2px solid #333" }}>
           <CardContent>
-            <Image
-              layout="fixed"
-              objectFit="cover"
-              src={backEnd.url}
-              alt={backEnd.name}
-              width={100}
-              height={100}
-            />
-            <Typography variant="body2">
-              <span style={{ display: "block" }}>{backEnd.name}</span>
-            </Typography>
+            <ImageContainer smaill>
+              <Image
+                src={backEnd.url}
+                layout="fill"
+                objectFit="contain"
+                alt={backEnd.name}
+              />
+            </ImageContainer>
+
+            <span className="block">{backEnd.name}</span>
           </CardContent>
         </Card>
       </li>
@@ -70,27 +80,13 @@ export const Skills: NextPage<Props> = (props) => {
 
   return (
     <section id="skills">
-      <h2>Skills</h2>
+      <h2 className="margin-buttom-3">Skills 🛠</h2>
 
-      <StyledDiv>
-        <h3 style={{ marginRight: "3rem" }}>front-end</h3>
-        <ul
-          style={{
-            flex: 2,
-            display: "flex",
-            flexWrap: "wrap",
-          }}
-        >
-          {frontEnd}
-        </ul>
-      </StyledDiv>
+      <StyledH3>front-end</StyledH3>
+      <StyledUl>{frontEnd}</StyledUl>
 
-      <StyledDiv>
-        <h3 style={{ marginRight: "3rem" }}>back-end</h3>
-        <ul style={{ flex: 2, display: "flex", flexWrap: "wrap" }}>
-          {backEnd}
-        </ul>
-      </StyledDiv>
+      <StyledH3>back-end</StyledH3>
+      <StyledUl>{backEnd}</StyledUl>
     </section>
   );
 };
