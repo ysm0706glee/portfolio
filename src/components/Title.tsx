@@ -6,15 +6,14 @@ import styled from "styled-components";
 import { StyledFlex } from "src/styles/common";
 
 const StyledSection = styled.section`
-  min-height: calc(100vh - 10vh);
+  height: calc(100vh - 10vh);
 `;
 
 const StyledP = styled.p`
-  font-size: 3rem;
+  font-size: 3vw;
 
   @media only screen and (max-width: 480px) {
     margin: 1rem 0 1rem 0;
-    font-size: 1.5rem;
   }
 `;
 
@@ -38,7 +37,7 @@ export const Title: NextPage<Props> = (props) => {
 
   return (
     <StyledSection className="primary-background-color">
-      <StyledFlex>
+      <StyledFlex className="height-100">
         <StyledP className="secondary-color">
           Hello, my name is Takuma,
           <br /> I am a {""}

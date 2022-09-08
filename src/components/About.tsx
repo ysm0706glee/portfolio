@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
-import { StyledFlex, StyledBorder, ImageContainer } from "src/styles/common";
+import { StyledFlex, ImageContainer } from "src/styles/common";
 
 type Props = {
   abouts: [
@@ -17,15 +17,15 @@ type Props = {
 
 export const About: NextPage<Props> = (props) => {
   return (
-    <section id="about">
-      <h2 className="margin-buttom-3">About 😎</h2>
+    <section id="about" className="viewport-min-height-70">
+      <h2 className="margin-buttom">About 😎</h2>
 
-      <StyledFlex>
-        <ImageContainer className="border">
+      <StyledFlex className="gap-1">
+        <ImageContainer smaill className="mobile-margin-center border">
           <Image
             src={props.abouts[0].profile.url}
             layout="fill"
-            objectFit="contain"
+            objectFit="cover"
             alt="profile"
           />
         </ImageContainer>

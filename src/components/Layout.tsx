@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   p {
-    font-size: 1.3rem;
+    font-size: 1.5vw;
     line-height: 1.5;
   }
 
@@ -57,6 +57,14 @@ const GlobalStyle = createGlobalStyle`
     height: 100vh;
   }
 
+  .viewport-min-height-70 {
+    min-height: 70vh;
+  }
+
+  .height-100 {
+    height: 100%;
+  }
+
   .block {
     display: block;
   }
@@ -65,11 +73,19 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
   }
 
+  .gap-1 {
+    gap: 1rem;
+  }
+
   .flex-1 {
     flex: 1;
   }
 
-  .margin-buttom-3 {
+  .align-self-center {
+    align-self: center
+  };
+
+  .margin-buttom {
     margin-bottom: 3rem;
   }
 
@@ -77,10 +93,14 @@ const GlobalStyle = createGlobalStyle`
     margin-right: 1rem;
   }
 
+  .border {
+    border: 1px solid #333;
+  }
+
   .image-container {
     position: relative;
-    width: 30rem;
-    height: 30rem;
+    width: 40%;
+    height: 80%;
   }
 
   .border {
@@ -102,13 +122,21 @@ const GlobalStyle = createGlobalStyle`
       padding: 0.5rem 1rem;
     }
 
-    .margin-buttom-2 {
-      margin-bottom: 2rem;
+    .height-100 {
+      height: 80%;
+    }
+
+  .mobile-margin-center {
+    margin: 0 auto;
+  }
+
+    .margin-buttom {
+      margin-bottom: 1rem;
     }
 
     .image-container {
-      width: 20rem;
-      height: 20rem;
+      width: 90%;
+      height: 50%;
     }
   }
 `;

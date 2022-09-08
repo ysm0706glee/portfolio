@@ -24,6 +24,11 @@ const StyledUl = styled.ul`
   }
 `;
 
+const StyledLi = styled.li`
+  width: 7rem;
+  height: 7rem;
+`;
+
 type Props = {
   skills: [
     {
@@ -39,14 +44,14 @@ export const Skills: NextPage<Props> = (props) => {
   const frontEnd = props.skills
     .filter((skill) => skill.type === "front-end")
     .map((frontEnd) => (
-      <li key={frontEnd.id}>
-        <Card sx={{ border: "2px solid #333" }}>
-          <CardContent>
-            <ImageContainer smaill>
+      <StyledLi key={frontEnd.id} className="border">
+        <Card sx={{ height: "100%" }}>
+          <CardContent sx={{ height: "100%" }}>
+            <ImageContainer large>
               <Image
                 src={frontEnd.url}
                 layout="fill"
-                objectFit="contain"
+                objectFit="cover"
                 alt={frontEnd.name}
               />
             </ImageContainer>
@@ -54,20 +59,20 @@ export const Skills: NextPage<Props> = (props) => {
             <span className="block">{frontEnd.name}</span>
           </CardContent>
         </Card>
-      </li>
+      </StyledLi>
     ));
 
   const backEnd = props.skills
     .filter((skill) => skill.type === "back-end")
     .map((backEnd) => (
-      <li key={backEnd.id}>
-        <Card sx={{ border: "2px solid #333" }}>
-          <CardContent>
-            <ImageContainer smaill>
+      <StyledLi key={backEnd.id} className="border">
+        <Card sx={{ height: "100%" }}>
+          <CardContent sx={{ height: "100%" }}>
+            <ImageContainer large>
               <Image
                 src={backEnd.url}
                 layout="fill"
-                objectFit="contain"
+                objectFit="cover"
                 alt={backEnd.name}
               />
             </ImageContainer>
@@ -75,12 +80,12 @@ export const Skills: NextPage<Props> = (props) => {
             <span className="block">{backEnd.name}</span>
           </CardContent>
         </Card>
-      </li>
+      </StyledLi>
     ));
 
   return (
-    <section id="skills">
-      <h2 className="margin-buttom-3">Skills 🛠</h2>
+    <section id="skills" className="viewport-min-height-70">
+      <h2 className="margin-buttom">Skills 🛠</h2>
 
       <StyledH3>front-end</StyledH3>
       <StyledUl>{frontEnd}</StyledUl>

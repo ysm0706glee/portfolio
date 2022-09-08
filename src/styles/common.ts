@@ -6,6 +6,7 @@ type AnimatedAProps = {
 
 type ImageContainerProps = {
   smaill?: boolean;
+  large?: boolean;
 };
 
 export const AnimatedA = styled.a<AnimatedAProps>`
@@ -43,19 +44,26 @@ export const StyledBorder = styled.div`
 `;
 
 export const StyledFlex = styled.div`
+  height: 25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+
+  @media only screen and (max-width: 480px) {
+    height: 20rem;
+  }
 `;
 
 export const ImageContainer = styled.div<ImageContainerProps>`
   position: relative;
-  width: ${(props) => (props.smaill ? "7rem" : "25rem")};
-  height: ${(props) => (props.smaill ? "7rem" : "25rem")};
+  width: ${(props) => (props.smaill ? "30%" : props.large ? "100%" : "50%")};
+  height: ${(props) => (props.smaill ? "60%" : props.large ? "100%" : "70%")};
 
   @media only screen and (max-width: 480px) {
-    width: ${(props) => (props.smaill ? "5rem" : "10rem")};
-    height: ${(props) => (props.smaill ? "5rem" : "10rem")};
+    width: ${(props) =>
+      props.smaill ? "50%" : props.large ? "100%" : "10rem"};
+    height: ${(props) =>
+      props.smaill ? "50%" : props.large ? "100%" : "10rem"};
   }
 `;

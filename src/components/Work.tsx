@@ -70,8 +70,8 @@ export const Work: NextPage<Props> = (props) => {
   };
 
   return (
-    <section id="work">
-      <h2 className="margin-buttom-3">Work 👨🏻‍💻</h2>
+    <section id="work" className="viewport-min-height-70">
+      <h2 className="margin-buttom">Work 👨🏻‍💻</h2>
 
       <StyledDiv>
         <AnimatePresence initial={false} custom={direction}>
@@ -95,9 +95,10 @@ export const Work: NextPage<Props> = (props) => {
                 opacity: { duration: 0.2 },
               }}
             >
-              <CardActionArea>
+              <CardActionArea sx={{ height: "100%" }}>
                 <CardContent
                   sx={{
+                    height: "100%",
                     display: "flex",
                     justifyContent: "space-around",
                     alignItems: "center",
@@ -109,7 +110,7 @@ export const Work: NextPage<Props> = (props) => {
                       <Image
                         src={props.works[index].image.url}
                         layout="fill"
-                        objectFit="contain"
+                        objectFit="cover"
                         alt="image"
                       />
                     ) : null}
