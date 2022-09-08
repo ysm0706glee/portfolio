@@ -40,8 +40,7 @@ export const Title: NextPage<Props> = (props) => {
     <StyledSection className="primary-background-color padding">
       <StyledFlex className="height-100">
         <StyledP className="secondary-color">
-          Hello, my name is Takuma,
-          <br /> I am a {""}
+          Hello, my name is{" "}
           <AnimatePresence initial={false} exitBeforeEnter>
             {language === "en" ? (
               <motion.span
@@ -53,7 +52,7 @@ export const Title: NextPage<Props> = (props) => {
                 onMouseEnter={() => setLanguage("ja")}
                 onMouseLeave={() => setLanguage("en")}
               >
-                Front-end engineer
+                Takuma
               </motion.span>
             ) : (
               <motion.span
@@ -65,10 +64,12 @@ export const Title: NextPage<Props> = (props) => {
                 onMouseEnter={() => setLanguage("ja")}
                 onMouseLeave={() => setLanguage("en")}
               >
-                フロントエンドエンジニア
+                たくま
               </motion.span>
             )}
           </AnimatePresence>
+          ,
+          <br /> I am a Front-end engineer
         </StyledP>
 
         <AnimatePresence initial={false} exitBeforeEnter>
