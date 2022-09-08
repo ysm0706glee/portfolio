@@ -17,10 +17,10 @@ type Props = {
 
 export const About: NextPage<Props> = (props) => {
   return (
-    <section id="about" className="viewport-min-height-70">
+    <section id="about" className="viewport-min-height-70 padding">
       <h2 className="margin-buttom">About 😎</h2>
 
-      <StyledFlex className="gap-1">
+      <StyledFlex className="height-30rem gap-1">
         <ImageContainer smaill className="mobile-margin-center border">
           <Image
             src={props.abouts[0].profile.url}

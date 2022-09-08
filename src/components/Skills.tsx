@@ -25,8 +25,13 @@ const StyledUl = styled.ul`
 `;
 
 const StyledLi = styled.li`
-  width: 7rem;
-  height: 7rem;
+  width: 10rem;
+  height: 10rem;
+
+  @media only screen and (max-width: 480px) {
+    width: 7rem;
+    height: 7rem;
+  }
 `;
 
 type Props = {
@@ -45,8 +50,8 @@ export const Skills: NextPage<Props> = (props) => {
     .filter((skill) => skill.type === "front-end")
     .map((frontEnd) => (
       <StyledLi key={frontEnd.id} className="border">
-        <Card sx={{ height: "100%" }}>
-          <CardContent sx={{ height: "100%" }}>
+        <Card className="height-100">
+          <CardContent className="height-100">
             <ImageContainer large>
               <Image
                 src={frontEnd.url}
@@ -66,8 +71,8 @@ export const Skills: NextPage<Props> = (props) => {
     .filter((skill) => skill.type === "back-end")
     .map((backEnd) => (
       <StyledLi key={backEnd.id} className="border">
-        <Card sx={{ height: "100%" }}>
-          <CardContent sx={{ height: "100%" }}>
+        <Card className="height-100">
+          <CardContent className="height-100">
             <ImageContainer large>
               <Image
                 src={backEnd.url}
@@ -84,7 +89,7 @@ export const Skills: NextPage<Props> = (props) => {
     ));
 
   return (
-    <section id="skills" className="viewport-min-height-70">
+    <section id="skills" className="viewport-min-height-70 padding">
       <h2 className="margin-buttom">Skills 🛠</h2>
 
       <StyledH3>front-end</StyledH3>

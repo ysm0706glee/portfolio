@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
   p {
     font-size: 1.5vw;
-    line-height: 1.5;
+    line-height: 1.7;
   }
 
   ul {
@@ -27,10 +27,6 @@ const GlobalStyle = createGlobalStyle`
   a {
     color: inherit;
     text-decoration: none;
-  }
-
-  section {
-    padding: 3rem 7rem;
   }
 
   .primary-color {
@@ -61,8 +57,16 @@ const GlobalStyle = createGlobalStyle`
     min-height: 70vh;
   }
 
+  .width-100 {
+    width: 100%;
+  }
+
   .height-100 {
     height: 100%;
+  }
+
+  .height-30rem {
+    height: 30rem;
   }
 
   .block {
@@ -85,12 +89,21 @@ const GlobalStyle = createGlobalStyle`
     align-self: center
   };
 
+  .margin-center {
+    margin: 0 auto;
+  }
+
+  
   .margin-buttom {
     margin-bottom: 3rem;
   }
-
+  
   .margin-right-1 {
     margin-right: 1rem;
+  }
+
+  .padding {
+    padding: 3rem 7rem;
   }
 
   .border {
@@ -108,8 +121,14 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 7px;
   }
 
-  .margin-center {
-    margin: 0 auto;
+  .button {
+    background: none;
+	  color: inherit;
+	  border: none;
+	  padding: 0;
+	  font: inherit;
+	  cursor: pointer;
+	  outline: inherit;
   }
   
   @media only screen and (max-width: 480px) {
@@ -118,12 +137,8 @@ const GlobalStyle = createGlobalStyle`
       line-height: 1.3;
     }
 
-    section {
+    .padding {
       padding: 0.5rem 1rem;
-    }
-
-    .height-100 {
-      height: 80%;
     }
 
   .mobile-margin-center {

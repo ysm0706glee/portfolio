@@ -1,15 +1,17 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
+import { ReactNode, useState } from "react";
 import { request, gql } from "graphql-request";
 import ReactMarkdown from "react-markdown";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import IconButton from "@mui/material/IconButton";
+import { SendModal } from "src/components/SendModal";
 import { gqlUrl } from "src/utills/const";
-import { AnimatedA, ImageContainer } from "src/styles/common";
-import { IconButton } from "@mui/material";
-import Head from "next/head";
+import { AnimatedA, ImageContainer, StyledFlex } from "src/styles/common";
 
 const StyledContainer = styled.div`
   height: 100%;
@@ -83,15 +85,14 @@ type Props = {
   ];
 };
 
-// CHANGE
 type AnimatedParagraphProps = {
-  children: any;
+  children: ReactNode & ReactNode[];
 };
 
-const AnimatedParagraph: NextPage<AnimatedParagraphProps> = (props) => {
+const AnimatedParagraph: NextPage<AnimatedParagraphProps> = ({ children }) => {
   return (
     <motion.p variants={sentence} initial="hidden" animate="visible">
-      {props.children[0].split("").map((str: string, i: number) => (
+      {(children[0] as string).split("").map((str: string, i: number) => (
         <motion.span key={`${str}-${i}`} variants={letter}>
           {str}
         </motion.span>
@@ -101,6 +102,11 @@ const AnimatedParagraph: NextPage<AnimatedParagraphProps> = (props) => {
 };
 
 const Works: NextPage<Props> = (props) => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <>
       <Head>
@@ -108,7 +114,7 @@ const Works: NextPage<Props> = (props) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <section className="viewport-height-100 primary-color secondary-background-color">
+      <main className="viewport-height-100 padding primary-color secondary-background-color">
         <StyledContainer>
           <Link href="/">
             <a className="secondary-color">
@@ -124,7 +130,12 @@ const Works: NextPage<Props> = (props) => {
             </a>
           </Link>
 
-          <h2>{props.works[0].title}</h2>
+          <StyledFlex>
+            <h2>{props.works[0].title}</h2>
+            <button className="button" onClick={handleOpen}>
+              Do you like this project?
+            </button>
+          </StyledFlex>
 
           <ImageContainer className="border align-self-center">
             {props.works[0].image ? (
@@ -172,7 +183,13 @@ const Works: NextPage<Props> = (props) => {
             )}
           </div>
         </StyledContainer>
-      </section>
+
+        <SendModal
+          open={open}
+          handleClose={handleClose}
+          title={props.works[0].title}
+        />
+      </main>
     </>
   );
 };

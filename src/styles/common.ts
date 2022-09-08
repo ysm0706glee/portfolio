@@ -44,14 +44,25 @@ export const StyledBorder = styled.div`
 `;
 
 export const StyledFlex = styled.div`
-  height: 25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+`;
+
+export const StyledModal = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30rem;
+  height: 30rem;
+  background: #ffffff;
+  padding: 1rem;
 
   @media only screen and (max-width: 480px) {
-    height: 20rem;
+    width: 15rem;
+    height: 15rem;
   }
 `;
 

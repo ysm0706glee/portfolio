@@ -14,6 +14,7 @@ const StyledP = styled.p`
 
   @media only screen and (max-width: 480px) {
     margin: 1rem 0 1rem 0;
+    font-size: 5vw;
   }
 `;
 
@@ -36,7 +37,7 @@ export const Title: NextPage<Props> = (props) => {
   const [language, setLanguage] = useState<"en" | "ja">("en");
 
   return (
-    <StyledSection className="primary-background-color">
+    <StyledSection className="primary-background-color padding">
       <StyledFlex className="height-100">
         <StyledP className="secondary-color">
           Hello, my name is Takuma,
